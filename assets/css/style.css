@@ -1,56 +1,6 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  color: #555;
-  font-family: "Lato", "Arial", "sans-serif";
-  font-weight: 300;
-  text-rendering: optimizeLegibility;
-}
-
-header {
+main {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(../images/hero-image.jpg) center center no-repeat;
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
-    url(../images/hero-image.jpg);
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-section {
-  padding: 70px 0;
-}
-
-h1 {
-  color: #fff;
-  font-size: 240%;
-  margin: 0 0 20px;
-}
-
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-.hero-text-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.sale-items .boxes {
-  display: flex;
-  justify-content: space-between;
-}
-
-.sale-items .boxes .box {
-  height: 10em;
-  width: 15em;
-  background-color: lightblue;
-  padding: 20px;
-  text-align: center;
 }
