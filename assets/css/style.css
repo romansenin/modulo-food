@@ -4,3 +4,10 @@ main {
   height: 100vh;
   background-size: cover;
 }
+
+.fa-shopping-cart {
+  font-size: 1.2em;
+  border-radius: 50%;
+  padding: 15px;
+  background: orange;
+}
