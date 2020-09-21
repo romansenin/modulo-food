@@ -25,20 +25,34 @@ main {
   display: flex;
 }
 
-.food-items .food-item {
+.food-items .food-item-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 25em;
   width: 15em;
-  background: #EEE;
   border-radius: 5px;
   margin-right: 10px;
 }
 
-.food-items .food-item:nth-child(2n + 2) {
-  background: lightblue;
+.food-item-box .food-item {
+  height: 90%;
+  width: 98%;
+  background-color: #f8f9fa;
+  border-radius: 5px;
 }
 
-.food-items .food-item:last-child {
-  margin-right: none;
+.food-item-box .middle {
+  height: 100%;
+  width: 100%;
+}
+
+.food-item-box #first-middle {
+  margin-right: 3px;
+}
+
+.food-items .food-item-box:last-child {
+  margin-right: 0px;
 }
 
 /* ICONS */
