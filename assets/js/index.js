@@ -6,6 +6,9 @@ const foods = [
   { name: "Pizza", filename: "pizza.png" },
 ];
 
-document.querySelectorAll(".food-img").forEach((foodItem, index) => {
-  foodItem.innerHTML = `<img src="./assets/images/${foods[index].filename}" alt="">`;
+document.querySelectorAll(".food-item").forEach((foodItem, index) => {
+  const foodImg = foodItem.querySelector(".food-img");
+  const foodName = foodItem.querySelector(".food-info .food-name");
+  foodImg.innerHTML = `<img src="./assets/images/${foods[index].filename}" alt="">`;
+  foodName.textContent = foods[index].name;
 });
