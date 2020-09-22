@@ -40,6 +40,24 @@ main {
   width: 98%;
   background-color: #f8f9fa;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.food-item .food-info {
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0.5em;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.food-item .food-img img {
+  width: 100%;
+  height: auto;
 }
 
 .food-item-box .middle {
@@ -53,6 +71,11 @@ main {
 
 .food-items .food-item-box:last-child {
   margin-right: 0px;
+}
+
+.food-items .food-item img {
+  width: 100%;
+  /* height: 50%; */
 }
 
 /* ICONS */
