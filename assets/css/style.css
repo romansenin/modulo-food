@@ -51,13 +51,17 @@ main {
   width: 100%;
   padding: 0 0.5em 0.5em 0.5em;
   flex-grow: 1;
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 .food-item .food-price {
   display: flex;
   font-size: 1.2em;
-  /* padding: 0.5em; */
+  padding: 0.5em;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 0.1em;
+  box-shadow: 0em 0.1em #eee;
 }
 
 .food-price .price-symbol, .food-price .price-cent {
@@ -77,8 +81,8 @@ main {
 
 .food-info .food-name {
   text-align: center;
-  margin-bottom: 0.5em;
-  font-size: large;
+  margin-bottom: 0.3em;
+  font-size: 0.9em;
 }
 
 .food-info .add-cart {
