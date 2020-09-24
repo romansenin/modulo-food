@@ -49,9 +49,19 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0.5em;
+  padding: 0 0.5em 0.5em 0.5em;
   flex-grow: 1;
-  justify-content: center;
+  /* justify-content: center; */
+}
+
+.food-item .food-price {
+  display: flex;
+  font-size: 1.2em;
+  /* padding: 0.5em; */
+}
+
+.food-price .price-symbol, .food-price .price-cent {
+  font-size: 0.8em;
 }
 
 .food-item .food-img {
