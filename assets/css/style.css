@@ -33,6 +33,7 @@ main {
   width: 15em;
   border-radius: 5px;
   margin-right: 10px;
+  transition: opacity 0.2s;
 }
 
 .food-item-box .food-item {
