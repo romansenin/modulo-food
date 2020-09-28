@@ -17,14 +17,15 @@ function displayFood(foodItem, index) {
   foodName.textContent = foods[index].name;
 }
 
-
 // fades element from view and removes it from DOM, duration should match CSS transition duration for element's opacity
-async function rollWheel(element, duration, newElement) {
+async function rollWheel(element, duration, newElement, left) {
   element.style.opacity = "0";
   return new Promise((resolve) => {
     setTimeout(() => {
       element.remove();
-      foodItems.appendChild(newElement);
+      left
+        ? foodItems.appendChild(newElement)
+        : foodItems.insertBefore(newElement, foodItems.firstChild);
       resolve(element);
     }, duration);
   });
@@ -33,8 +34,9 @@ async function rollWheel(element, duration, newElement) {
 document.querySelector(".arrow-left").addEventListener("click", async () => {
   const foodBoxes = document.querySelectorAll(".food-box");
   const clone = foodBoxes[0].cloneNode(true);
-  displayFood(clone, (index++) % foods.length); // hence the name of the app
-  rollWheel(foodBoxes[0], 40, clone);
+  index = index < 0 ? foods.length - 1 : index;
+  displayFood(clone, index++ % foods.length); // hence the name of the app
+  rollWheel(foodBoxes[0], 40, clone, 1);
 
   for (let i = 1; i < foodBoxes.length; i++) {
     const middle = foodBoxes[i].firstElementChild;
@@ -46,12 +48,13 @@ document.querySelector(".arrow-left").addEventListener("click", async () => {
 document.querySelector(".arrow-right").addEventListener("click", async () => {
   const foodBoxes = document.querySelectorAll(".food-box");
   const clone = foodBoxes[0].cloneNode(true);
-  displayFood(clone, (--index) % foods.length); // hence the name of the app
-  rollWheel(foodBoxes[foodBoxes.length - 1], 40, clone);
+  index = index < 0 ? foods.length - 1 : index;
+  displayFood(clone, index-- % foods.length);
+  await rollWheel(foodBoxes[foodBoxes.length - 1], 40, clone, 0);
 
-  for (let i = 1; i < foodBoxes.length; i++) {
+  for (let i = 0; i < foodBoxes.length; i++) {
     const middle = foodBoxes[i].firstElementChild;
-    if (i == 1) middle.classList.remove("middle");
-    else if (i == 3) middle.classList.add("middle");
+    if (i == 0) middle.classList.add("middle");
+    else if (i == 2) middle.classList.remove("middle");
   }
 });
