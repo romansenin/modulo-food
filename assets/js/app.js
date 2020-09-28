@@ -36,7 +36,7 @@ document.querySelector(".arrow-left").addEventListener("click", async () => {
   const clone = foodBoxes[0].cloneNode(true);
   index = index < 0 ? foods.length - 1 : index;
   displayFood(clone, index++ % foods.length); // hence the name of the app
-  rollWheel(foodBoxes[0], 40, clone, 1);
+  rollWheel(foodBoxes[0], 20, clone, 1);
 
   for (let i = 1; i < foodBoxes.length; i++) {
     const middle = foodBoxes[i].firstElementChild;
