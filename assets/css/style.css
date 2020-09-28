@@ -1,28 +1,26 @@
+.navbar {
+  min-height: 11vh;
+}
+
+
 /* MAIN */
 
 main {
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url(../images/hero-image.jpg) center center no-repeat;
-  height: 100vh;
+  height: 89vh;
   background-size: cover;
-  display: flex;
-  flex-direction: column;
-}
-
-/* CONTAINER */
-
-.food-wheel {
-  flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 
 /* FOOD ITEMS */
 
 .food-items {
   display: flex;
+  width: 63em;
+  /* justify-content: center; */
 }
 
 .food-items .food-item-box {
@@ -32,7 +30,7 @@ main {
   height: 25em;
   width: 15em;
   border-radius: 5px;
-  margin-right: 10px;
+  margin-right: 1em;
   transition: opacity 0.2s;
 }
 
@@ -99,10 +97,6 @@ main {
 .food-item-box .middle {
   height: 100%;
   width: 100%;
-}
-
-.food-item-box #first-middle {
-  margin-right: 3px;
 }
 
 .food-items .food-item-box:last-child {

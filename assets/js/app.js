@@ -15,9 +15,9 @@ async function fadeElement(element, duration) {
   element.style.opacity = "0";
   return new Promise((resolve) => {
     setTimeout(() => {
-      // element.style.display = "none";
+      element.style.display = "none";
       // element.style.position = "absolute";
-      // element.remove();
+      element.remove();
       resolve(element);
     }, duration);
   });
@@ -25,6 +25,7 @@ async function fadeElement(element, duration) {
 
 document.querySelector(".arrow-left").addEventListener("click", async () => {
   const firstFoodItem = document.querySelector(".food-item-box");
+  console.log(firstFoodItem);
   const clone = firstFoodItem.cloneNode(true);
   fadeElement(firstFoodItem, 200);
   // document.querySelector(".food-items").appendChild(clone);
