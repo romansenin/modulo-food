@@ -2,7 +2,6 @@
   min-height: 11vh;
 }
 
-
 /* MAIN */
 
 main {
@@ -20,10 +19,9 @@ main {
 .food-items {
   display: flex;
   width: 63em;
-  /* justify-content: center; */
 }
 
-.food-items .food-item-box {
+.food-items .food-box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +32,7 @@ main {
   transition: opacity 0.2s;
 }
 
-.food-item-box .food-item {
+.food-box .food-item {
   height: 90%;
   width: 98%;
   background-color: #f8f9fa;
@@ -42,6 +40,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: height 0.2s;
 }
 
 .food-item .food-info {
@@ -63,7 +62,8 @@ main {
   box-shadow: 0em 0.1em #eee;
 }
 
-.food-price .price-symbol, .food-price .price-cent {
+.food-price .price-symbol,
+.food-price .price-cent {
   font-size: 0.8em;
 }
 
@@ -94,12 +94,12 @@ main {
   margin-right: 0.5em;
 }
 
-.food-item-box .middle {
+.food-box .middle {
   height: 100%;
   width: 100%;
 }
 
-.food-items .food-item-box:last-child {
+.food-items .food-box:last-child {
   margin-right: 0px;
 }
 
@@ -121,9 +121,10 @@ main {
   position: relative;
 }
 
-.fa-chevron-left, .fa-chevron-right {
+.fa-chevron-left,
+.fa-chevron-right {
   font-size: 2.5em;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
   transition: font-size 0.2s;
   position: absolute;
@@ -132,19 +133,22 @@ main {
   transform: translate(-50%, -50%);
 }
 
-.fa-chevron-left:hover, .fa-chevron-right:hover {
+.fa-chevron-left:hover,
+.fa-chevron-right:hover {
   font-size: 3.2em;
 }
 
-.fa-chevron-left::after, .fa-chevron-right::after {
+.fa-chevron-left::after,
+.fa-chevron-right::after {
   content: "";
   display: block;
   padding-top: 8px;
-  border-bottom: 2px solid #FFF;
+  border-bottom: 2px solid #fff;
   width: 0%;
   transition: width 0.5s;
 }
 
-.fa-chevron-left:hover::after, .fa-chevron-right:hover::after {
+.fa-chevron-left:hover::after,
+.fa-chevron-right:hover::after {
   width: 100%;
 }
