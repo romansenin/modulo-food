@@ -31,11 +31,11 @@ async function rollWheel(element, duration, newElement, left) {
   });
 }
 
-document.querySelector(".arrow-left").addEventListener("click", async () => {
+document.querySelector(".arrow-left").addEventListener("click", () => {
   const foodBoxes = document.querySelectorAll(".food-box");
   const clone = foodBoxes[0].cloneNode(true);
   index = index < 0 ? foods.length - 1 : index;
-  displayFood(clone, index++ % foods.length); // hence the name of the app
+  displayFood(clone, index++ % foods.length); // hence the name of the site
   rollWheel(foodBoxes[0], 20, clone, 1);
 
   for (let i = 1; i < foodBoxes.length; i++) {
@@ -45,12 +45,12 @@ document.querySelector(".arrow-left").addEventListener("click", async () => {
   }
 });
 
-document.querySelector(".arrow-right").addEventListener("click", async () => {
+document.querySelector(".arrow-right").addEventListener("click", () => {
   const foodBoxes = document.querySelectorAll(".food-box");
   const clone = foodBoxes[0].cloneNode(true);
   index = index < 0 ? foods.length - 1 : index;
   displayFood(clone, index-- % foods.length);
-  await rollWheel(foodBoxes[foodBoxes.length - 1], 40, clone, 0);
+  rollWheel(foodBoxes[foodBoxes.length - 1], 40, clone, 0);
 
   for (let i = 0; i < foodBoxes.length; i++) {
     const middle = foodBoxes[i].firstElementChild;
