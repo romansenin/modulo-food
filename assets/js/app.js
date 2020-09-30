@@ -12,7 +12,7 @@ function displayFood(foodItem, index) {
   const price = foods[index].price;
 
   foodPrice.querySelector(".price-dollar").textContent = price.split(".")[0];
-  foodPrice.querySelector(".price-cent").textContent = price.split(".")[1];
+  foodPrice.querySelector(".price-cent").textContent = "." + price.split(".")[1];
   foodImg.innerHTML = `<img src="./assets/images/${foods[index].filename}" alt="${foods[index].name}">`;
   foodName.textContent = foods[index].name;
 }
