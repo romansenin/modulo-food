@@ -6,6 +6,10 @@ document.querySelectorAll(".food-item").forEach((foodItem, index) => {
   insertFoodInfo(foodItem, index);
 });
 
+document
+  .querySelectorAll(".arrow-box")
+  .forEach((arrowBox) => arrowBox.addEventListener("click", handleArrowClick));
+
 function insertFoodInfo(foodItem, index) {
   const foodImg = foodItem.querySelector(".food-img");
   const foodName = foodItem.querySelector(".food-info .food-name");
@@ -33,30 +37,31 @@ function rollWheel(element, newElement, left) {
   });
 }
 
-document.querySelector(".arrow-left").addEventListener("click", () => {
+function handleArrowClick() {
+  this.removeEventListener("click", handleArrowClick);
   const foodBoxes = document.querySelectorAll(".food-box");
   const clone = foodBoxes[0].cloneNode(true);
   index = index < 0 ? foods.length - 1 : index;
-  insertFoodInfo(clone, index++ % foods.length); // hence the name of the site
-  rollWheel(foodBoxes[0],clone, 1);
+  const isLeft = this.classList[1] === "arrow-left";
 
-  for (let i = 1; i < foodBoxes.length; i++) {
-    const middle = foodBoxes[i].firstElementChild;
-    if (i == 1) middle.classList.remove("middle");
-    else if (i == 3) middle.classList.add("middle");
-  }
-});
+  isLeft
+    ? insertFoodInfo(clone, index++ % foods.length) ||
+      rollWheel(foodBoxes[0], clone, true)
+    : insertFoodInfo(clone, index-- % foods.length) ||
+      rollWheel(foodBoxes[foodBoxes.length - 1], clone, false);
 
-document.querySelector(".arrow-right").addEventListener("click", () => {
-  const foodBoxes = document.querySelectorAll(".food-box");
-  const clone = foodBoxes[0].cloneNode(true);
-  index = index < 0 ? foods.length - 1 : index;
-  insertFoodInfo(clone, index-- % foods.length);
-  rollWheel(foodBoxes[foodBoxes.length - 1], clone, 0);
+  foodBoxes.forEach((foodBox, index) => {
+    const middle = foodBox.firstElementChild;
+    if (isLeft) {
+      if (index == 1) middle.classList.remove("middle");
+      else if (index == 3) middle.classList.add("middle");
+    } else {
+      if (index == 0) middle.classList.add("middle");
+      else if (index == 2) middle.classList.remove("middle");
+    }
+  });
 
-  for (let i = 0; i < foodBoxes.length; i++) {
-    const middle = foodBoxes[i].firstElementChild;
-    if (i == 0) middle.classList.add("middle");
-    else if (i == 2) middle.classList.remove("middle");
-  }
-});
+  setTimeout(() => {
+    this.addEventListener("click", handleArrowClick);
+  }, delay);
+}
