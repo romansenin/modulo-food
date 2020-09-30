@@ -1,5 +1,6 @@
 const foodItems = document.querySelector(".food-items");
 let index = 4;
+const delay = 200; // used to wait for wheel to "roll"
 
 document.querySelectorAll(".food-item").forEach((foodItem, index) => {
   insertFoodInfo(foodItem, index);
@@ -19,7 +20,7 @@ function insertFoodInfo(foodItem, index) {
 }
 
 // fades element from view and removes it from DOM, duration should match CSS transition duration for element's opacity
-function rollWheel(element, newElement, duration, left) {
+function rollWheel(element, newElement, left) {
   element.style.opacity = "0";
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -28,7 +29,7 @@ function rollWheel(element, newElement, duration, left) {
         ? foodItems.appendChild(newElement)
         : foodItems.insertBefore(newElement, foodItems.firstChild);
       resolve(element);
-    }, duration);
+    }, delay);
   });
 }
 
@@ -37,7 +38,7 @@ document.querySelector(".arrow-left").addEventListener("click", () => {
   const clone = foodBoxes[0].cloneNode(true);
   index = index < 0 ? foods.length - 1 : index;
   insertFoodInfo(clone, index++ % foods.length); // hence the name of the site
-  rollWheel(foodBoxes[0], 20, clone, 1);
+  rollWheel(foodBoxes[0],clone, 1);
 
   for (let i = 1; i < foodBoxes.length; i++) {
     const middle = foodBoxes[i].firstElementChild;
@@ -51,7 +52,7 @@ document.querySelector(".arrow-right").addEventListener("click", () => {
   const clone = foodBoxes[0].cloneNode(true);
   index = index < 0 ? foods.length - 1 : index;
   insertFoodInfo(clone, index-- % foods.length);
-  rollWheel(foodBoxes[foodBoxes.length - 1], 40, clone, 0);
+  rollWheel(foodBoxes[foodBoxes.length - 1], clone, 0);
 
   for (let i = 0; i < foodBoxes.length; i++) {
     const middle = foodBoxes[i].firstElementChild;
