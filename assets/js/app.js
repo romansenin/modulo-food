@@ -1,6 +1,7 @@
 const foodItems = document.querySelector(".food-items");
 let index = 4;
 const delay = 200; // used to wait for wheel to "roll"
+let cartClosed = true;
 
 document.querySelectorAll(".food-item").forEach((foodItem, index) => {
   insertFoodInfo(foodItem, index);
@@ -66,6 +67,7 @@ function handleArrowClick() {
   }, delay);
 }
 
-document.querySelector(".fa-shopping-cart").addEventListener("click", function() {
-  document.querySelector(".side-cart").style.transform = "translateX(0)";
+document.querySelector(".fa-shopping-cart").addEventListener("click", function() {  
+  document.querySelector(".side-cart").style.transform = cartClosed ? "translateX(0)" : "translateX(100%)";
+  cartClosed = !cartClosed;
 });
