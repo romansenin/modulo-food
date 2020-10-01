@@ -1,4 +1,5 @@
 const foodItems = document.querySelector(".food-items");
+const sideCart = document.querySelector(".side-cart");
 let index = 4;
 const delay = 200; // used to wait for wheel to "roll"
 let cartClosed = true;
@@ -68,6 +69,6 @@ function handleArrowClick() {
 }
 
 document.querySelector(".fa-shopping-cart").addEventListener("click", function() {  
-  document.querySelector(".side-cart").style.transform = cartClosed ? "translateX(0)" : "translateX(100%)";
+  sideCart.style.transform = cartClosed ? "translateX(0)" : "translateX(100%)";
   cartClosed = !cartClosed;
 });
