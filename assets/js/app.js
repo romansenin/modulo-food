@@ -65,3 +65,7 @@ function handleArrowClick() {
     this.addEventListener("click", handleArrowClick);
   }, delay);
 }
+
+document.querySelector(".fa-shopping-cart").addEventListener("click", function() {
+  document.querySelector(".side-cart").style.display = "flex";
+});
