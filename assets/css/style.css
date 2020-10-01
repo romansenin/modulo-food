@@ -165,4 +165,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateX(100%);
+  transition: transform 0.5s;
 }

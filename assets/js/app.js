@@ -67,5 +67,5 @@ function handleArrowClick() {
 }
 
 document.querySelector(".fa-shopping-cart").addEventListener("click", function() {
-  document.querySelector(".side-cart").style.display = "flex";
+  document.querySelector(".side-cart").style.transform = "translateX(0)";
 });
