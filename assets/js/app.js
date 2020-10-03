@@ -4,7 +4,7 @@ const overlay = document.querySelector(".overlay");
 let index = 4;
 const rollDelay = 200; // used to wait for wheel to "roll"
 let cartOpen = false;
-let cartBounceDuration = 200;
+// let cartBounceDuration = 200;
 
 document.querySelectorAll(".food-item").forEach((foodItem, index) => {
   insertFoodInfo(foodItem, index);
@@ -73,22 +73,21 @@ function handleArrowClick() {
   }, rollDelay);
 }
 
-function slideCart(value, speedup = 0) {
-  cartBounceDuration -= speedup;
+function slideCart(value, duration = 200) {
   sideCart.style.transform = `translateX(${value}%)`;
-
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(sideCart);
-    }, cartBounceDuration);
+    }, duration);
   });
 }
 
 async function bounceCart(values) {
+  let duration = 200;
   for (let i = 0; i < values.length; i++) {
-    await slideCart(values[i], 40);
+    duration -= 45;
+    await slideCart(values[i], duration);
   }
-  cartBounceDuration = 200;
 }
 
 function toggleOverlay() {
