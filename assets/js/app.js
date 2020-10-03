@@ -1,8 +1,9 @@
 const foodItems = document.querySelector(".food-items");
 const sideCart = document.querySelector(".side-cart");
 let index = 4;
-const delay = 200; // used to wait for wheel to "roll"
-let cartClosed = true;
+const rollDelay = 200; // used to wait for wheel to "roll"
+let cartOpen = false;
+let cartBounceDuration = 200;
 
 document.querySelectorAll(".food-item").forEach((foodItem, index) => {
   insertFoodInfo(foodItem, index);
@@ -35,7 +36,7 @@ function rollWheel(element, newElement, left) {
         ? foodItems.appendChild(newElement)
         : foodItems.insertBefore(newElement, foodItems.firstChild);
       resolve(element);
-    }, delay);
+    }, rollDelay);
   });
 }
 
@@ -65,10 +66,37 @@ function handleArrowClick() {
 
   setTimeout(() => {
     this.addEventListener("click", handleArrowClick);
-  }, delay);
+  }, rollDelay);
 }
 
-document.querySelector(".fa-shopping-cart").addEventListener("click", function() {  
-  sideCart.style.transform = cartClosed ? "translateX(0)" : "translateX(100%)";
-  cartClosed = !cartClosed;
-});
+function slideCart(value, speedup = 0) {
+  cartBounceDuration -= speedup;
+  sideCart.style.transform = `translateX(${value}%)`;
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(sideCart);
+    }, cartBounceDuration);
+  });
+}
+
+async function bounceCart(values) {
+  for (let i = 0; i < values.length; i++) {
+    await slideCart(values[i], 40);
+  }
+  cartBounceDuration = 200;
+}
+
+async function handleShoppingCart() {
+  this.removeEventListener("click", handleShoppingCart);
+  cartOpen ? await slideCart(100) : await slideCart(0);
+  cartOpen = !cartOpen;
+  if (cartOpen) {
+    await bounceCart([15, 0, 5, 0]);
+  }
+  this.addEventListener("click", handleShoppingCart);
+}
+
+document
+  .querySelector(".shopping-cart")
+  .addEventListener("click", handleShoppingCart);
