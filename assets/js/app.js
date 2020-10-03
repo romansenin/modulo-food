@@ -44,13 +44,12 @@ function handleArrowClick() {
   this.removeEventListener("click", handleArrowClick);
   const foodBoxes = document.querySelectorAll(".food-box");
   const clone = foodBoxes[0].cloneNode(true);
-  index = index < 0 ? foods.length - 1 : index;
+  index = index < 0 ? foods.length - 1 : index % foods.length;
   const isLeft = this.classList[1] === "arrow-left";
 
   isLeft
-    ? insertFoodInfo(clone, index++ % foods.length) ||
-      rollWheel(foodBoxes[0], clone, true)
-    : insertFoodInfo(clone, index-- % foods.length) ||
+    ? insertFoodInfo(clone, index++) || rollWheel(foodBoxes[0], clone, true)
+    : insertFoodInfo(clone, index--) ||
       rollWheel(foodBoxes[foodBoxes.length - 1], clone, false);
 
   foodBoxes.forEach((foodBox, index) => {
