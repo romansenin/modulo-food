@@ -1,5 +1,6 @@
 const foodItems = document.querySelector(".food-items");
 const sideCart = document.querySelector(".side-cart");
+const overlay = document.querySelector(".overlay");
 let index = 4;
 const rollDelay = 200; // used to wait for wheel to "roll"
 let cartOpen = false;
@@ -12,6 +13,10 @@ document.querySelectorAll(".food-item").forEach((foodItem, index) => {
 document
   .querySelectorAll(".arrow-box")
   .forEach((arrowBox) => arrowBox.addEventListener("click", handleArrowClick));
+
+document
+  .querySelector(".shopping-cart")
+  .addEventListener("click", handleShoppingCart);
 
 function insertFoodInfo(foodItem, index) {
   const foodImg = foodItem.querySelector(".food-img");
@@ -86,16 +91,36 @@ async function bounceCart(values) {
   cartBounceDuration = 200;
 }
 
+function toggleOverlay() {
+  if (overlay.style.display === "" || overlay.style.display === "none") {
+    overlay.style.display = "block";
+    setTimeout(() => {
+      overlay.style.opacity = 0.7;
+    }, 0);
+  } else {
+    overlay.style.opacity = 0;
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 200);
+  }
+}
+
 async function handleShoppingCart() {
+  toggleOverlay();
   this.removeEventListener("click", handleShoppingCart);
+  overlay.removeEventListener("click", handleOverlay);
+
   cartOpen ? await slideCart(100) : await slideCart(0);
   cartOpen = !cartOpen;
   if (cartOpen) {
     await bounceCart([15, 0, 5, 0]);
   }
   this.addEventListener("click", handleShoppingCart);
+  overlay.addEventListener("click", handleOverlay);
 }
 
-document
-  .querySelector(".shopping-cart")
-  .addEventListener("click", handleShoppingCart);
+async function handleOverlay() {
+  toggleOverlay();
+  await slideCart(100);
+  cartOpen = false;
+}

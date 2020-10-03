@@ -114,6 +114,7 @@ main {
   border-radius: 50%;
   padding: 15px;
   background: #ffa500;
+  box-shadow: 0.2em 0.2em #eee;
 }
 
 .navbar-light .navbar-nav .nav-link:focus,
@@ -125,7 +126,7 @@ main {
   background-color: #ee9a00;
 }
 
-.fa-shopping-cart:active {
+.shopping-cart:active .fa-shopping-cart {
   transform: translate(0.1em, 0.1em);
 }
 
@@ -164,6 +165,18 @@ main {
 .fa-chevron-left:hover::after,
 .fa-chevron-right:hover::after {
   width: 100%;
+}
+
+.overlay {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 89vh;
+  width: 100%;
+  background-color: #000;
+  transition: opacity 0.2s;
 }
 
 .side-cart {
