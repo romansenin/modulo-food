@@ -1,5 +1,8 @@
 const foodItems = document.querySelector(".food-items");
 const sideCart = document.querySelector(".side-cart");
+sideCart
+  .querySelector(".fa-times")
+  .addEventListener("click", handleShoppingCart);
 const overlay = document.querySelector(".overlay");
 let index = 4;
 const rollDelay = 200; // used to wait for wheel to "roll"
