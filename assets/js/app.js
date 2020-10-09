@@ -4,7 +4,6 @@ const overlay = document.querySelector(".overlay");
 let index = 4;
 const rollDelay = 200; // used to wait for wheel to "roll"
 let cartOpen = false;
-// let cartBounceDuration = 200;
 
 document.querySelectorAll(".food-item").forEach((foodItem, index) => {
   insertFoodInfo(foodItem, index);
@@ -23,6 +22,16 @@ function insertFoodInfo(foodItem, index) {
   const foodName = foodItem.querySelector(".food-info .food-name");
   const foodPrice = foodItem.querySelector(".food-price");
   const price = foods[index].price;
+  const form = foodItem.querySelector("form");
+
+  form.setAttribute("data-id", foods[index].id);
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const inputTag = event.target.querySelector("input");
+    const quantity = inputTag.value;
+    inputTag.value = "";
+    console.log(foods[event.target.getAttribute("data-id") - 1].name);
+  });
 
   foodPrice.querySelector(".price-dollar").textContent = price.split(".")[0];
   foodPrice.querySelector(".price-cent").textContent =
