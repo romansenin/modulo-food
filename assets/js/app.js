@@ -20,6 +20,10 @@ document
   .querySelector(".shopping-cart")
   .addEventListener("click", handleShoppingCart);
 
+function addToCart(food, quantity) {
+  console.log("adding " + food + " and " + quantity + " to cart.");
+}
+
 function insertFoodInfo(foodItem, index) {
   const foodImg = foodItem.querySelector(".food-img");
   const foodName = foodItem.querySelector(".food-info .food-name");
@@ -33,7 +37,9 @@ function insertFoodInfo(foodItem, index) {
     const inputTag = event.target.querySelector("input");
     const quantity = inputTag.value;
     inputTag.value = "";
-    console.log(foods[event.target.getAttribute("data-id") - 1].name);
+    const foodName = foods[event.target.getAttribute("data-id") - 1].name;
+
+    addToCart(foodName, quantity);
   });
 
   foodPrice.querySelector(".price-dollar").textContent = price.split(".")[0];
