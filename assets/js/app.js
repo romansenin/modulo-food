@@ -1,12 +1,13 @@
 const foodItems = document.querySelector(".food-items");
 const sideCart = document.querySelector(".side-cart");
-sideCart
-  .querySelector(".fa-times")
-  .addEventListener("click", handleShoppingCart);
 const overlay = document.querySelector(".overlay");
 let index = 4;
 const rollDelay = 200; // used to wait for wheel to "roll"
 let cartOpen = false;
+const cart = [];
+sideCart
+  .querySelector(".fa-times")
+  .addEventListener("click", handleShoppingCart);
 
 document.querySelectorAll(".food-item").forEach((foodItem, index) => {
   insertFoodInfo(foodItem, index);
@@ -21,7 +22,14 @@ document
   .addEventListener("click", handleShoppingCart);
 
 function addToCart(food, quantity) {
-  console.log("adding " + food + " and " + quantity + " to cart.");
+  console.log("adding " + quantity + " " + food + " to cart.");
+  const foodExists = cart.find((cartEntry) => cartEntry.food === food);
+  if (foodExists) {
+    foodExists.quantity += quantity;
+  } else {
+    cart.push({ food, quantity });
+  }
+  console.log(cart);
 }
 
 function insertFoodInfo(foodItem, index) {
@@ -39,7 +47,7 @@ function insertFoodInfo(foodItem, index) {
     inputTag.value = "";
     const foodName = foods[event.target.getAttribute("data-id") - 1].name;
 
-    addToCart(foodName, quantity);
+    addToCart(foodName, parseInt(quantity));
   });
 
   foodPrice.querySelector(".price-dollar").textContent = price.split(".")[0];
