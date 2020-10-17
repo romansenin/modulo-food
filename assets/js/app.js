@@ -22,14 +22,27 @@ document
   .addEventListener("click", handleShoppingCart);
 
 function addToCart(food, quantity) {
-  console.log("adding " + quantity + " " + food + " to cart.");
   const foodExists = cart.find((cartEntry) => cartEntry.food === food);
   if (foodExists) {
     foodExists.quantity += quantity;
   } else {
     cart.push({ food, quantity });
   }
-  console.log(cart);
+  displayCartItems();
+}
+
+function displayCartItems() {
+  sideCart.innerHTML = "";
+  cart.forEach((cartItem) => {
+    const div = document.createElement("div");
+    const foodSpan = document.createElement("span");
+    foodSpan.textContent = cartItem.food;
+    const quantitySpan = document.createElement("span");
+    quantitySpan.textContent = " " + cartItem.quantity;
+    div.appendChild(foodSpan);
+    div.appendChild(quantitySpan);
+    sideCart.appendChild(div);
+  });
 }
 
 function insertFoodInfo(foodItem, index) {
