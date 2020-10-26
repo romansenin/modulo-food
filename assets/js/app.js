@@ -1,7 +1,7 @@
 const foodItems = document.querySelector(".food-items");
 const sideCart = document.querySelector(".side-cart");
 const overlay = document.querySelector(".overlay");
-let index = 4;
+let foodIndex = 4;
 const rollDelay = 200; // used to wait for wheel to "roll"
 let cartOpen = false;
 const cart = [];
@@ -88,22 +88,20 @@ function handleArrowClick() {
   this.removeEventListener("click", handleArrowClick);
   const foodBoxes = document.querySelectorAll(".food-box");
   const clone = foodBoxes[0].cloneNode(true);
-  index = index < 0 ? foods.length - 1 : index % foods.length;
+  foodIndex = foodIndex < 0 ? foods.length - 1 : foodIndex % foods.length;
   const isLeft = this.classList[1] === "arrow-left";
 
   isLeft
-    ? insertFoodInfo(clone, index++) || rollWheel(foodBoxes[0], clone, true)
-    : insertFoodInfo(clone, index--) ||
+    ? insertFoodInfo(clone, foodIndex++) || rollWheel(foodBoxes[0], clone, true)
+    : insertFoodInfo(clone, foodIndex--) ||
       rollWheel(foodBoxes[foodBoxes.length - 1], clone, false);
 
   foodBoxes.forEach((foodBox, index) => {
     const middle = foodBox.firstElementChild;
     if (isLeft) {
-      if (index == 1) middle.classList.remove("middle");
-      else if (index == 3) middle.classList.add("middle");
+      if (index === 1 || index === 3) middle.classList.toggle("middle");
     } else {
-      if (index == 0) middle.classList.add("middle");
-      else if (index == 2) middle.classList.remove("middle");
+      if (index === 0 || index === 2) middle.classList.toggle("middle");
     }
   });
 
