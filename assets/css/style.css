@@ -198,17 +198,27 @@ main {
   height: 89vh;
   width: 25em;
   display: flex;
+  flex-direction: column;
   transform: translateX(100%);
   transition: transform 0.2s;
   padding: 20px;
 }
 
 .side-cart .fa-times {
-  position: absolute;
-  top: 0;
-  right: 0;
   margin: 0.5em 0.7em 0 0;
   color: #ffa500;
   font-size: 2em;
   cursor: pointer;
+  text-align: end;
+}
+
+.side-cart .cart-content {
+  background: #eee;
+  border-radius: 5px;
+  padding: 1em;
+  margin-top: 1em;
+}
+
+.cart-content div {
+  padding: 0.5em;
 }

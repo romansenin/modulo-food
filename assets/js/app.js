@@ -1,5 +1,6 @@
 const foodItems = document.querySelector(".food-items");
 const sideCart = document.querySelector(".side-cart");
+const sideCartContent = sideCart.querySelector(".cart-content");
 const overlay = document.querySelector(".overlay");
 let foodIndex = 4;
 const rollDelay = 200; // used to wait for wheel to "roll"
@@ -32,7 +33,7 @@ function addToCart(food, quantity) {
 }
 
 function displayCartItems() {
-  sideCart.innerHTML = "";
+  sideCartContent.innerHTML = "";
   cart.forEach((cartItem) => {
     const div = document.createElement("div");
     const foodSpan = document.createElement("span");
@@ -41,7 +42,7 @@ function displayCartItems() {
     quantitySpan.textContent = " " + cartItem.quantity;
     div.appendChild(foodSpan);
     div.appendChild(quantitySpan);
-    sideCart.appendChild(div);
+    sideCartContent.appendChild(div);
   });
 }
 
